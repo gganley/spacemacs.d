@@ -224,7 +224,7 @@ values."
                                    :width normal
                                    :powerline-scale 1.3)
                                  ))
-                              ((string-equal system-type "gnu/linux") ; linux
+                              ((string-equal system-type "gnu/linux") ; GNU/Linux
                                (progn
                                  '("Anonymice Powerline"
                                    :size 11
