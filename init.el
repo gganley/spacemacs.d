@@ -452,6 +452,17 @@ you should place your code here."
         ns-alternate-modifier 'super
         mac-control-modifier 'control
         ns-function-modifier 'hyper)
+  (cond
+   ((string-equal system-type "windows-nt") ; Microsoft Windows
+    (progn
+      ))
+   ((string-equal system-type "darwin") ; Mac OS X
+    (progn
+      (setq org-directory "/Users/gganley/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org")))
+   ((string-equal system-type "gnu/linux") ; GNU/Linux
+    (progn
+      )))
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
   (define-key prog-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-}") 'sp-forward-barf-sexp)
