@@ -482,4 +482,5 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+ '(show-paren-match ((t (:background "#1c1f24" :foreground "#ff665c" :underline t :weight ultra-bold)))))
 )
