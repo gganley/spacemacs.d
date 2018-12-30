@@ -450,6 +450,10 @@ you should place your code here."
         ns-alternate-modifier 'super
         mac-control-modifier 'control
         ns-function-modifier 'hyper)
+  (define-key prog-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
+  (define-key prog-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
+  (define-key prog-mode-map (kbd "C-}") 'sp-forward-barf-sexp)
+  (define-key prog-mode-map (kbd "C-{") 'sp-backward-barf-sexp))
 
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
