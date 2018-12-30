@@ -446,12 +446,18 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; Spacemacs
   (spacemacs/toggle-vi-tilde-fringe-off)
   (spacemacs/toggle-mode-line-battery-on)
+
+  ;; Mac
   (setq mac-command-modifier 'meta
         ns-alternate-modifier 'super
         mac-control-modifier 'control
         ns-function-modifier 'hyper)
+
+  ;; Org config
   (cond
    ((string-equal system-type "windows-nt") ; Microsoft Windows
     (progn
@@ -463,6 +469,8 @@ you should place your code here."
     (progn
       )))
   (setq org-default-notes-file (concat org-directory "/notes.org"))
+
+  ;; Smartparens
   (define-key prog-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-}") 'sp-forward-barf-sexp)
