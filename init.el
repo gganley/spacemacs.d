@@ -446,6 +446,10 @@ you should place your code here."
   (spacemacs/toggle-vi-tilde-fringe-off)
   (spacemacs/toggle-mode-line-battery-on)
   )
+  (setq mac-command-modifier 'meta
+        ns-alternate-modifier 'super
+        mac-control-modifier 'control
+        ns-function-modifier 'hyper)
 
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
