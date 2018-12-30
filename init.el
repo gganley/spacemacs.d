@@ -31,6 +31,9 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(c-c++
+     (gtags :variables gtags-enable-by-default t)
+     docker
+     finance
      ibuffer
      html
      (clojure :variables
