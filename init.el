@@ -450,6 +450,7 @@ you should place your code here."
   ;; Spacemacs
   (spacemacs/toggle-vi-tilde-fringe-off)
   (spacemacs/toggle-mode-line-battery-on)
+  (spacemacs/set-leader-keys "oc" 'org-capture)
 
   ;; Mac
   (setq mac-command-modifier 'meta
