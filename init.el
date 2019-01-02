@@ -469,7 +469,9 @@ you should place your code here."
    ((string-equal system-type "gnu/linux") ; GNU/Linux
     (progn
       )))
-  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (setq org-default-notes-file (concat org-directory "/notes.org")
+        org-clock-persist 'history)
+  (org-clock-persistence-insinuate)
 
   ;; Smartparens
   (define-key prog-mode-map (kbd "C-M-)") 'sp-wrap)
