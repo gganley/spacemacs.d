@@ -176,7 +176,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner nil
+   dotspacemacs-startup-banner 'official
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
@@ -471,7 +471,8 @@ you should place your code here."
     (progn
       )))
   (setq org-default-notes-file (concat org-directory "/notes.org")
-        org-clock-persist 'history)
+        org-clock-persist 'history
+        org-agenda-files "~/.spacemacs.d/.agenda_files")
   (org-clock-persistence-insinuate)
 
   ;; Smartparens
