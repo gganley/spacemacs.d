@@ -437,7 +437,8 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  )
+  (setq custom-file "/Users/gganley/.spacemacs.d/custom.el")
+  (load custom-file))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -481,27 +482,8 @@ you should place your code here."
   (define-key prog-mode-map (kbd "C-}") 'sp-forward-barf-sexp)
   (define-key prog-mode-map (kbd "C-{") 'sp-backward-barf-sexp))
 
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(cider-auto-test-mode t)
- '(cider-repl-use-pretty-printing t)
- '(custom-safe-themes
-   '("1c082c9b84449e54af757bcae23617d11f563fc9f33a832a8a2813c4d7dfb652" default))
- '(evil-want-Y-yank-to-eol nil)
- '(package-selected-packages
-   '(pyvenv evil-matchit eshell-prompt-extras doom-modeline goto-chg markdown-mode magit yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toml-mode toc-org tagedit symon string-inflection spaceline-all-the-icons smeargle slim-mode shrink-path shell-pop scss-mode sayid sass-mode restart-emacs rainbow-delimiters racer qml-mode pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gtags helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate google-c-style golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md ggtags fuzzy font-lock+ flyspell-correct-helm flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-ledger flycheck-golangci-lint flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-magit evil-lisp-state evil-lion evil-ledger evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu ess-R-data-view eshell-z esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks emmet-mode elisp-slime-nav eldoc-eval editorconfig dumb-jump dotenv-mode doom-themes dockerfile-mode docker disaster diminish diff-hl define-word cython-mode counsel-projectile company-web company-statistics company-rtags company-go company-c-headers company-auctex company-anaconda column-enforce-mode clojure-snippets clojure-cheatsheet clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu centered-cursor-mode cargo browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(show-paren-match ((t (:background "#1c1f24" :foreground "#ff665c" :underline t :weight ultra-bold)))))
-)
+;; (defun dotspacemacs/emacs-custom-settings ()
+;;   "Emacs custom settings.
+;; This is an auto-generated function, do not modify its content directly, use
+;; Emacs customize menu instead.
+;; This function is called at the very end of Spacemacs initialization.")
