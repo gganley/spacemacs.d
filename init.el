@@ -464,7 +464,7 @@ you should place your code here."
       ))
    ((string-equal system-type "darwin") ; Mac OS X
     (progn
-      (setq org-directory "/Users/gganley/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org")))
+      (setq org-directory "/Users/gganley/org")))
    ((string-equal system-type "gnu/linux") ; GNU/Linux
     (progn
       )))
