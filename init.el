@@ -468,6 +468,7 @@ you should place your code here."
         ns-function-modifier 'hyper)
 
   ;; Org config
+  (org-clock-persistence-insinuate)
   (cond
    ((string-equal system-type "windows-nt") ; Microsoft Windows
     (progn
@@ -480,8 +481,18 @@ you should place your code here."
       )))
   (setq org-default-notes-file (concat org-directory "/notes.org")
         org-clock-persist 'history
-        org-agenda-files "~/.spacemacs.d/.agenda_files")
-  (org-clock-persistence-insinuate)
+        org-agenda-files "~/.spacemacs.d/.agenda_files"
+        org-capture-templates '(("t" "Simple todo" entry
+                                 (file+headline "notes.org" "Tasks")
+                                 "** TODO %?\n%T%i")
+                                ("T" "Todo with context" entry
+                                 (file+headline "notes.org" "Tasks")
+                                 "** TODO %?\n%T\n%F\n%i")
+                                ("h" "Highlight" entry
+                                 (file+headline "highlight.org" "Highlight")
+                                 "** %? : %a\n%c\n%i"
+                                 )))
+
 
   ;; Smartparens
   (define-key prog-mode-map (kbd "C-M-)") 'sp-wrap)
@@ -524,6 +535,8 @@ you should place your code here."
           ("/college/INBOX" . ?c)
           ("/gganley/INBOX" . ?p)))
   (mu4e/mail-account-reset)
+
+  )
 
 ;; (defun dotspacemacs/emacs-custom-settings ()
 ;;   "Emacs custom settings.
