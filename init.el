@@ -228,10 +228,10 @@ values."
                               ((string-equal system-type "darwin") ; Mac OS X
                                (progn
                                  '("Anonymous Pro for Powerline"
-                                   :size 15
+                                   :size 14
                                    :weight normal
                                    :width normal
-                                   :powerline-scale 1.3)
+                                   :powerline-scale 1.6)
                                  ))
                               ((string-equal system-type "gnu/linux") ; GNU/Linux
                                (progn
