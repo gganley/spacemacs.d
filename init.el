@@ -72,7 +72,7 @@ values."
      auto-completion
      better-defaults
      emacs-lisp
-     git
+     (git :variables git-magit-status-fullscreen t)
      markdown
      org
      (shell :variables
