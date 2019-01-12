@@ -62,11 +62,7 @@ values."
              :ssl t
              :nick "gganley"
              :password (getenv "FREENODE_KEY"))
-            ("irc.gitter.im"
-             :port "6667"
-             :ssl t
-             :nick "gganley"
-             :password (getenv "GITTER_KEY"))))
+            ))
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
