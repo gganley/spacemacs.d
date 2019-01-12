@@ -35,6 +35,11 @@ values."
      docker
      finance
      ibuffer
+     (mu4e :variables
+           mu4e-installation-path "/usr/share/emacs/site-lisp"
+           mu4e-account-alist t
+           mu4e-enable-mode-line t
+           mu4e-enable-notifications t)
      html
      (clojure :variables
               clojure-enable-sayid t
@@ -482,6 +487,36 @@ you should place your code here."
   (define-key prog-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-}") 'sp-forward-barf-sexp)
   (define-key prog-mode-map (kbd "C-{") 'sp-backward-barf-sexp))
+  ;; mu4e
+  (setq mu4e-account-alist
+        '(("Personal"
+           (mu4e-sent-messages-behavior sent)
+           (mu4e-sent-folder "/gganley/Sent Items")
+           (mu4e-drafts-folder "/gganley/Drafts")
+           (user-mail-address "me@gganley.com")
+           (user-full-name "Gregory Ganley"))
+          ("gmail"
+           (mu4e-sent-messages-behavior delete)
+           (mu4e-sent-folder "/gmail/[Gmail]/.Sent Mail")
+           (mu4e-drafts-folder "/gmail/[Gmail]/.Drafts")
+           (user-mail-address "gcganley2854@gmail.com")
+           (user-full-name "Gregory Ganley"))
+          ("BSU"
+           (mu4e-sent-messages-behavior sent)
+           (mu4e-sent-folder "/college/Sent Items")
+           (mu4e-drafts-folder "/college/Drafts")
+           (user-mail-address "gganley@student.bridgew.edu")
+           (user-full-name "Gregory Ganley")))
+        mu4e-maildir "~/.mail"
+        mu4e-trash-folder "/Trash"
+        mu4e-refile-folder "/Archive"
+        mu4e-view-show-images nil
+        mu4e-view-show-addresses t
+        mu4e-maildir-shortcuts
+        '(("/gmail/INBOX" . ?g)
+          ("/college/INBOX" . ?c)
+          ("/gganley/INBOX" . ?p)))
+  (mu4e/mail-account-reset)
 
 ;; (defun dotspacemacs/emacs-custom-settings ()
 ;;   "Emacs custom settings.
