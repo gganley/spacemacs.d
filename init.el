@@ -46,7 +46,11 @@ values."
               clojure-enable-clj-refactor t
               clojure-enable-fancify-symbols t)
      python
-     (go :variables go-use-golangci-lint t
+     (go :variables
+         go-use-golangci-lint t
+         go-use-test-args "-race -timeout 10s"
+         godoc-at-point-function 'godoc-gogetdoc
+         go-backend 'lsp
          go-tab-width 4)
      latex
      rust
@@ -486,7 +490,11 @@ you should place your code here."
   (define-key prog-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-}") 'sp-forward-barf-sexp)
-  (define-key prog-mode-map (kbd "C-{") 'sp-backward-barf-sexp))
+  (define-key prog-mode-map (kbd "C-{") 'sp-backward-barf-sexp)
+
+  ;; Go
+  (setq go-format-before-save t)
+
   ;; mu4e
   (setq mu4e-account-alist
         '(("Personal"
