@@ -30,22 +30,28 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(c-c++
+   '(;; ----------------------------------------------------------------
+     ;; Example of useful layers you may want to use right away.
+     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+     ;; <M-m f e R> (Emacs style) to install them.
+     ;; ----------------------------------------------------------------
+     c-c++
      (gtags :variables gtags-enable-by-default t)
-     docker
      finance
      ibuffer
-     html
-     python
+     ;; html
+     ;; python
+     emacs-lisp
      (go :variables
          go-use-golangci-lint t
          go-use-test-args "-race -timeout 10s"
          godoc-at-point-function 'godoc-gogetdoc
          go-backend 'lsp
+         go-format-before-save t
          go-tab-width 4)
      latex
-     rust
-     ess
+     ;; rust
+     ;; ess
      (erc :variables
           erc-server-list
           '(("irc.freenode.net"
@@ -54,25 +60,20 @@ values."
              :nick "gganley"
              :password (getenv "FREENODE_KEY"))
             ))
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
+     syntax-checking
+     spell-checking
      auto-completion
-     better-defaults
-     emacs-lisp
+     ;; better-defaults
      multiple-cursors
-     (git :variables git-magit-status-fullscreen t)
      markdown
      org
+     version-control
+     (git :variables git-magit-status-fullscreen t)
+     docker
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom
             shell-default-shell 'eshell)
-     spell-checking
-     syntax-checking
-     version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
