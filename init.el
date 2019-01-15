@@ -62,6 +62,7 @@ values."
      auto-completion
      better-defaults
      emacs-lisp
+     multiple-cursors
      (git :variables git-magit-status-fullscreen t)
      markdown
      org
