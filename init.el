@@ -36,10 +36,6 @@ values."
      finance
      ibuffer
      html
-     (clojure :variables
-              clojure-enable-sayid t
-              clojure-enable-clj-refactor t
-              clojure-enable-fancify-symbols t)
      python
      (go :variables
          go-use-golangci-lint t
