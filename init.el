@@ -476,7 +476,7 @@ you should place your code here."
       (setq org-directory "/Users/gganley/org")))
    ((string-equal system-type "gnu/linux") ; GNU/Linux
     (progn
-      )))
+      (setq org-directory "/home/gganley/org"))))
   (setq org-default-notes-file (concat org-directory "/notes.org")
         org-clock-persist 'history
         org-agenda-files "~/.spacemacs.d/.agenda_files"
@@ -498,12 +498,7 @@ you should place your code here."
   (define-key prog-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-}") 'sp-forward-barf-sexp)
-  (define-key prog-mode-map (kbd "C-{") 'sp-backward-barf-sexp)
-
-  ;; Go
-  (setq go-format-before-save t)
-
-  )
+  (define-key prog-mode-map (kbd "C-{") 'sp-backward-barf-sexp))
 
 ;; (defun dotspacemacs/emacs-custom-settings ()
 ;;   "Emacs custom settings.
