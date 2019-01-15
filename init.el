@@ -458,8 +458,6 @@ you should place your code here."
   (spacemacs/toggle-mode-line-battery-on)
   (spacemacs/set-leader-keys "oc" 'org-capture)
   (setq bookmark-default-file "~/.spacemacs.d/bookmarks.el")
-  ;; (with-eval-after-load 'helm
-  ;;   (setq helm-display-function 'helm-default-display-buffer))
 
   ;; Mac
   (setq mac-command-modifier 'meta
