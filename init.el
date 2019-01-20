@@ -434,8 +434,19 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (setq custom-file "/Users/gganley/.spacemacs.d/custom.el")
-  (load custom-file))
+  (cond
+   ((string-equal system-type "windows-nt") ; Microsoft Windows
+    (progn
+      ))
+   ((string-equal system-type "darwin") ; Mac OS X
+    (progn
+      (setq custom-file "/Users/gganley/.spacemacs.d/custom.el")
+      (load custom-file)))
+   ((string-equal system-type "gnu/linux") ; GNU/Linux
+    (progn
+      (setq custom-file "/home/gganley/.spacemacs.d/custom.el")
+      (load custom-file))))
+  )
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
