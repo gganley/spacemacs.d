@@ -503,7 +503,7 @@ you should place your code here."
 
 
   ;; Smartparens
-  (define-key prog-mode-map (kbd "C-M-)") 'sp-wrap)
+  (define-key prog-mode-map (kbd "C-M-)") 'sp-wrap-round)
   (define-key prog-mode-map (kbd "C-M-(") 'sp-raise-sexp)
   (define-key prog-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
