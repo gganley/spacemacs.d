@@ -508,7 +508,12 @@ you should place your code here."
   (define-key prog-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-}") 'sp-forward-barf-sexp)
-  (define-key prog-mode-map (kbd "C-{") 'sp-backward-barf-sexp))
+  (define-key prog-mode-map (kbd "C-{") 'sp-backward-barf-sexp)
+
+  ;; Go
+  (defun disable-aindent()
+    (clean-aindent-mode -1))
+  (add-hook 'go-mode-hook 'disable-aindent))
 
 ;; (defun dotspacemacs/emacs-custom-settings ()
 ;;   "Emacs custom settings.
