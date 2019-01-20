@@ -68,6 +68,7 @@ values."
      org
      version-control
      (git :variables git-magit-status-fullscreen t)
+     github
      docker
      (shell :variables
             shell-default-height 30
