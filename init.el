@@ -227,10 +227,10 @@ values."
                               ((string-equal system-type "gnu/linux") ; GNU/Linux
                                (progn
                                  '("Anonymice Powerline"
-                                   :size 11
+                                   :size 14
                                    :weight normal
                                    :width normal
-                                   :powerline-scale 1.3))))
+                                   :powerline-scale 1.6))))
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
