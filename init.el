@@ -464,7 +464,6 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   ;; Spacemacs
-  (spacemacs/toggle-vi-tilde-fringe-off)
   (spacemacs/toggle-mode-line-battery-on)
   (spacemacs/set-leader-keys "oc" 'org-capture)
   (setq bookmark-default-file "~/.spacemacs.d/bookmarks.el")
@@ -487,6 +486,7 @@ you should place your code here."
    ((string-equal system-type "gnu/linux") ; GNU/Linux
     (progn
       (setq org-directory "/home/gganley/org"))))
+
   (setq org-default-notes-file (concat org-directory "/notes.org")
         org-clock-persist 'history
         org-agenda-files "~/.spacemacs.d/.agenda_files"
