@@ -46,9 +46,8 @@ values."
          go-use-golangci-lint t
          go-use-test-args "-race -timeout 10s"
          godoc-at-point-function 'godoc-gogetdoc
-         go-backend 'lsp
-         go-format-before-save t
-         go-tab-width 4)
+         go-tab-width 4
+         go-format-before-save t)
      latex
      ;; rust
      ;; ess
