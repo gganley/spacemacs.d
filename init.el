@@ -116,21 +116,21 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil then enable support for the portable dumper. You'll need
    ;; to compile Emacs 27 from source following the instructions in file
    ;; EXPERIMENTAL.org at to root of the git repository.
-   ;; (default nil)
-   dotspacemacs-enable-emacs-pdumper t
+   ;; ;; (default nil)
+   ;; dotspacemacs-enable-emacs-pdumper nil
 
-   ;; File path pointing to emacs 27.1 executable compiled with support
-   ;; for the portable dumper (this is currently the branch pdumper).
-   ;; (default "emacs-27.0.50")
-   dotspacemacs-emacs-pdumper-executable-file "/home/gganley/emacs_head/bin/emacs-27.0.50"
+   ;; ;; File path pointing to emacs 27.1 executable compiled with support
+   ;; ;; for the portable dumper (this is currently the branch pdumper).
+   ;; ;; (default "emacs-27.0.50")
+   ;; dotspacemacs-emacs-pdumper-executable-file "emacs"
 
-   ;; Name of the Spacemacs dump file. This is the file will be created by the
-   ;; portable dumper in the cache directory under dumps sub-directory.
-   ;; To load it when starting Emacs add the parameter `--dump-file'
-   ;; when invoking Emacs 27.1 executable on the command line, for instance:
-   ;;   ./emacs --dump-file=~/.emacs.d/.cache/dumps/spacemacs.pdmp
-   ;; (default spacemacs.pdmp)
-   dotspacemacs-emacs-dumper-dump-file "spacemacs.pdmp"
+   ;; ;; Name of the Spacemacs dump file. This is the file will be created by the
+   ;; ;; portable dumper in the cache directory under dumps sub-directory.
+   ;; ;; To load it when starting Emacs add the parameter `--dump-file'
+   ;; ;; when invoking Emacs 27.1 executable on the command line, for instance:
+   ;; ;;   ./emacs --dump-file=~/.emacs.d/.cache/dumps/spacemacs.pdmp
+   ;; ;; (default spacemacs.pdmp)
+   ;; dotspacemacs-emacs-dumper-dump-file "spacemacs.pdmp"
 
    ;; If non-nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
@@ -288,14 +288,11 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil then the last auto saved layouts are resumed automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts nil
-<<<<<<< HEAD
 
    ;; If non-nil, auto-generate layout name when creating new layouts. Only has
    ;; effect when using the "jump to layout by number" commands. (default nil)
    dotspacemacs-auto-generate-layout-names nil
 
-=======
->>>>>>> 46fd2e69d909b34348c68996bd73762b99e12e84
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
