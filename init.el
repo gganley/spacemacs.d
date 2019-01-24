@@ -43,6 +43,7 @@ values."
      (gtags :variables gtags-enable-by-default t)
      ibuffer
      treemacs
+     gnus
      ;; html
      ;; python
      emacs-lisp
