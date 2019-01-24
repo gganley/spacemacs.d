@@ -51,9 +51,8 @@ values."
          go-use-golangci-lint t
          go-use-test-args "-race -timeout 10s"
          godoc-at-point-function 'godoc-gogetdoc
-         go-backend 'lsp
-         go-format-before-save t
-         go-tab-width 4)
+         go-tab-width 4
+         go-format-before-save t)
      latex
      ;; rust
      ;; ess
@@ -74,6 +73,7 @@ values."
      org
      version-control
      (git :variables git-magit-status-fullscreen t)
+     github
      docker
      (shell :variables
             shell-default-height 30
@@ -117,12 +117,12 @@ It should only modify the values of Spacemacs settings."
    ;; to compile Emacs 27 from source following the instructions in file
    ;; EXPERIMENTAL.org at to root of the git repository.
    ;; (default nil)
-   dotspacemacs-enable-emacs-pdumper nil
+   dotspacemacs-enable-emacs-pdumper t
 
    ;; File path pointing to emacs 27.1 executable compiled with support
    ;; for the portable dumper (this is currently the branch pdumper).
    ;; (default "emacs-27.0.50")
-   dotspacemacs-emacs-pdumper-executable-file "emacs-27.0.50"
+   dotspacemacs-emacs-pdumper-executable-file "/home/gganley/emacs_head/bin/emacs-27.0.50"
 
    ;; Name of the Spacemacs dump file. This is the file will be created by the
    ;; portable dumper in the cache directory under dumps sub-directory.
@@ -245,10 +245,10 @@ It should only modify the values of Spacemacs settings."
                               ((string-equal system-type "gnu/linux") ; GNU/Linux
                                (progn
                                  '("Anonymice Powerline"
-                                   :size 11
+                                   :size 14
                                    :weight normal
                                    :width normal
-                                   :powerline-scale 1.3))))
+                                   :powerline-scale 1.6))))
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -288,11 +288,14 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil then the last auto saved layouts are resumed automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts nil
+<<<<<<< HEAD
 
    ;; If non-nil, auto-generate layout name when creating new layouts. Only has
    ;; effect when using the "jump to layout by number" commands. (default nil)
    dotspacemacs-auto-generate-layout-names nil
 
+=======
+>>>>>>> 46fd2e69d909b34348c68996bd73762b99e12e84
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -475,8 +478,19 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (setq custom-file "/Users/gganley/.spacemacs.d/custom.el")
-  (load custom-file))
+  (cond
+   ((string-equal system-type "windows-nt") ; Microsoft Windows
+    (progn
+      ))
+   ((string-equal system-type "darwin") ; Mac OS X
+    (progn
+      (setq custom-file "/Users/gganley/.spacemacs.d/custom.el")
+      (load custom-file)))
+   ((string-equal system-type "gnu/linux") ; GNU/Linux
+    (progn
+      (setq custom-file "/home/gganley/.spacemacs.d/custom.el")
+      (load custom-file))))
+  )
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -494,7 +508,6 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   ;; Spacemacs
-  (spacemacs/toggle-vi-tilde-fringe-off)
   (spacemacs/toggle-mode-line-battery-on)
   (spacemacs/set-leader-keys "oc" 'org-capture)
   (setq bookmark-default-file "~/.spacemacs.d/bookmarks.el")
@@ -517,6 +530,7 @@ you should place your code here."
    ((string-equal system-type "gnu/linux") ; GNU/Linux
     (progn
       (setq org-directory "/home/gganley/org"))))
+
   (setq org-default-notes-file (concat org-directory "/notes.org")
         org-clock-persist 'history
         org-agenda-files "~/.spacemacs.d/.agenda_files"
@@ -533,12 +547,17 @@ you should place your code here."
 
 
   ;; Smartparens
-  (define-key prog-mode-map (kbd "C-M-)") 'sp-wrap)
+  (define-key prog-mode-map (kbd "C-M-)") 'sp-wrap-round)
   (define-key prog-mode-map (kbd "C-M-(") 'sp-raise-sexp)
   (define-key prog-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-(") 'sp-backward-slurp-sexp)
   (define-key prog-mode-map (kbd "C-}") 'sp-forward-barf-sexp)
-  (define-key prog-mode-map (kbd "C-{") 'sp-backward-barf-sexp))
+  (define-key prog-mode-map (kbd "C-{") 'sp-backward-barf-sexp)
+
+  ;; Go
+  (defun disable-aindent()
+    (clean-aindent-mode -1))
+  (add-hook 'go-mode-hook 'disable-aindent))
 
 ;; (defun dotspacemacs/emacs-custom-settings ()
 ;;   "Emacs custom settings.
