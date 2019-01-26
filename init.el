@@ -3,9 +3,8 @@
 ;; It must be stored in your home directory.
 
 (defun dotspacemacs/layers ()
-  "Configuration Layers declaration.
-You should not put any user code in this function besides modifying the variable
-values."
+  "Layer configuration:
+This function should only modify configuration layer settings."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -37,13 +36,12 @@ values."
    '(
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
+     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
+     ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      (gtags :variables gtags-enable-by-default t)
      ibuffer
      treemacs
-     gnus
      ;; html
      ;; python
      emacs-lisp
@@ -116,21 +114,21 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil then enable support for the portable dumper. You'll need
    ;; to compile Emacs 27 from source following the instructions in file
    ;; EXPERIMENTAL.org at to root of the git repository.
-   ;; ;; (default nil)
-   ;; dotspacemacs-enable-emacs-pdumper nil
+   ;; (default nil)
+   dotspacemacs-enable-emacs-pdumper nil
 
-   ;; ;; File path pointing to emacs 27.1 executable compiled with support
-   ;; ;; for the portable dumper (this is currently the branch pdumper).
-   ;; ;; (default "emacs-27.0.50")
-   ;; dotspacemacs-emacs-pdumper-executable-file "emacs"
+   ;; File path pointing to emacs 27.1 executable compiled with support
+   ;; for the portable dumper (this is currently the branch pdumper).
+   ;; (default "emacs-27.0.50")
+   dotspacemacs-emacs-pdumper-executable-file "emacs-27.0.50"
 
-   ;; ;; Name of the Spacemacs dump file. This is the file will be created by the
-   ;; ;; portable dumper in the cache directory under dumps sub-directory.
-   ;; ;; To load it when starting Emacs add the parameter `--dump-file'
-   ;; ;; when invoking Emacs 27.1 executable on the command line, for instance:
-   ;; ;;   ./emacs --dump-file=~/.emacs.d/.cache/dumps/spacemacs.pdmp
-   ;; ;; (default spacemacs.pdmp)
-   ;; dotspacemacs-emacs-dumper-dump-file "spacemacs.pdmp"
+   ;; Name of the Spacemacs dump file. This is the file will be created by the
+   ;; portable dumper in the cache directory under dumps sub-directory.
+   ;; To load it when starting Emacs add the parameter `--dump-file'
+   ;; when invoking Emacs 27.1 executable on the command line, for instance:
+   ;;   ./emacs --dump-file=~/.emacs.d/.cache/dumps/spacemacs.pdmp
+   ;; (default spacemacs.pdmp)
+   dotspacemacs-emacs-dumper-dump-file "spacemacs.pdmp"
 
    ;; If non-nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
@@ -251,7 +249,8 @@ It should only modify the values of Spacemacs settings."
                                    :powerline-scale 1.6))))
    ;; The leader key
    dotspacemacs-leader-key "SPC"
-   ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
+
+   ;; The key used for Emacs commands `M-x' (after pressing on the leader key).
    ;; (default "SPC")
    dotspacemacs-emacs-command-key "SPC"
 
@@ -480,14 +479,10 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
     (progn
       ))
    ((string-equal system-type "darwin") ; Mac OS X
-    (progn
-      (setq custom-file "/Users/gganley/.spacemacs.d/custom.el")
-      (load custom-file)))
+    (setq custom-file "/Users/gganley/.spacemacs.d/custom.el"))
    ((string-equal system-type "gnu/linux") ; GNU/Linux
-    (progn
-      (setq custom-file "/home/gganley/.spacemacs.d/custom.el")
-      (load custom-file))))
-  )
+    (setq custom-file "/home/gganley/.spacemacs.d/custom.el")))
+  (load custom-file))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -506,6 +501,7 @@ you should place your code here."
 
   ;; Spacemacs
   (spacemacs/toggle-mode-line-battery-on)
+  (spacemacs/toggle-vi-tilde-fringe-off)
   (spacemacs/set-leader-keys "oc" 'org-capture)
   (setq bookmark-default-file "~/.spacemacs.d/bookmarks.el")
 
