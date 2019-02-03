@@ -33,13 +33,14 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '((python :variables python-test-runner 'pytest)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      (gtags :variables gtags-enable-by-default t)
+     finance
      ibuffer
      treemacs
      ;; html
@@ -59,14 +60,11 @@ This function should only modify configuration layer settings."
           '(("irc.freenode.net"
              :port "6697"
              :ssl t
-             :nick "gganley"
-             :password (getenv "FREENODE_KEY"))
-            ))
+             :nick "gganley")))
      syntax-checking
      spell-checking
      auto-completion
      ;; better-defaults
-     multiple-cursors
      markdown
      org
      version-control
@@ -173,7 +171,7 @@ It should only modify the values of Spacemacs settings."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'emacs
 
    ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
@@ -310,6 +308,7 @@ It should only modify the values of Spacemacs settings."
    ;; paste something, pressing `C-j' and `C-k' several times cycles through the
    ;; elements in the `kill-ring'. (default nil)
    dotspacemacs-enable-paste-transient-state t
+
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
    dotspacemacs-which-key-delay 0.4
@@ -318,7 +317,7 @@ It should only modify the values of Spacemacs settings."
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
    ;; (default 'bottom)
-   dotspacemacs-which-key-position 'right-then-bottom
+   dotspacemacs-which-key-position 'bottom
 
    ;; Control where `switch-to-buffer' displays the buffer. If nil,
    ;; `switch-to-buffer' displays the buffer in the current window even if
@@ -339,6 +338,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native t
+
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
@@ -384,7 +384,8 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; (default nil)
    dotspacemacs-line-numbers '(:relative t
-                               :disabled-for-modes org-mode)
+                                         :disabled-for-modes org-mode)
+
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -392,10 +393,12 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode t
+
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
    dotspacemacs-smart-closing-parenthesis t
+
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -474,14 +477,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (cond
-   ((string-equal system-type "windows-nt") ; Microsoft Windows
-    (progn
-      ))
-   ((string-equal system-type "darwin") ; Mac OS X
-    (setq custom-file "/Users/gganley/.spacemacs.d/custom.el"))
-   ((string-equal system-type "gnu/linux") ; GNU/Linux
-    (setq custom-file "/home/gganley/.spacemacs.d/custom.el")))
+  (setq custom-file "~/.spacemacs.d/custom.el")
   (load custom-file))
 
 (defun dotspacemacs/user-load ()
@@ -499,10 +495,16 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; Emacs
+  (setq auth-source-debug t
+        auth-sources
+        '((:source "~/.authinfo.gpg")))
+
   ;; Spacemacs
   (spacemacs/toggle-mode-line-battery-on)
   (spacemacs/toggle-vi-tilde-fringe-off)
   (spacemacs/set-leader-keys "oc" 'org-capture)
+  (spacemacs/set-leader-keys "or" 'org-refile)
   (setq bookmark-default-file "~/.spacemacs.d/bookmarks.el")
 
   ;; Mac
@@ -513,30 +515,20 @@ you should place your code here."
 
   ;; Org config
   (org-clock-persistence-insinuate)
-  (cond
-   ((string-equal system-type "windows-nt") ; Microsoft Windows
-    (progn
-      ))
-   ((string-equal system-type "darwin") ; Mac OS X
-    (progn
-      (setq org-directory "/Users/gganley/org")))
-   ((string-equal system-type "gnu/linux") ; GNU/Linux
-    (progn
-      (setq org-directory "/home/gganley/org"))))
-
-  (setq org-default-notes-file (concat org-directory "/notes.org")
+  (setq org-directory "~/org"
+        org-default-notes-file (concat org-directory "/inbox.org")
         org-clock-persist 'history
+        org-refile-targets '(("~/org/today.org" :maxlevel . 3)
+                             ("~/org/notes.org" :maxlevel . 3)
+                             ("~/org/highlight.org" :maxlevel . 3)
+                             ("~/org/sometime_maybe.org" :maxlevel . 3)
+                             ("~/org/keybindings.org" :maxlevel . 3)
+                             ("~/org/recipes.org" :maxlevel . 3)
+                             ("~/org/projects.org" :maxlevel . 3))
         org-agenda-files "~/.spacemacs.d/.agenda_files"
         org-capture-templates '(("t" "Simple todo" entry
-                                 (file+headline "notes.org" "Tasks")
-                                 "** TODO %?\n%T%i")
-                                ("T" "Todo with context" entry
-                                 (file+headline "notes.org" "Tasks")
-                                 "** TODO %?\n%T\n%F\n%i")
-                                ("h" "Highlight" entry
-                                 (file+headline "highlight.org" "Highlight")
-                                 "** %? : %a\n%c\n%i"
-                                 )))
+                                 (file+headline "inbox.org" "Capture")
+                                 "** TODO %^{Description} %^g\n	%?\n	:LOGBOOK:\n	- Added: %U\n	:END:" :prepend t)))
 
 
   ;; Smartparens
