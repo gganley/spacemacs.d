@@ -526,6 +526,9 @@ you should place your code here."
                              ("~/org/recipes.org" :maxlevel . 3)
                              ("~/org/projects.org" :maxlevel . 3))
         org-agenda-files "~/.spacemacs.d/.agenda_files"
+        ;; This is to make SCHEDULED behave like deferred date
+        org-agenda-tags-todo-honor-ignore-options t
+        org-agenda-todo-ignore-scheduled 'future
         org-capture-templates '(("t" "Simple todo" entry
                                  (file+headline "inbox.org" "Capture")
                                  "** TODO %^{Description} %^g\n	%?\n	:LOGBOOK:\n	- Added: %U\n	:END:" :prepend t)))
