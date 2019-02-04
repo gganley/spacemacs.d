@@ -531,7 +531,7 @@ you should place your code here."
         org-agenda-todo-ignore-scheduled 'future
         org-capture-templates '(("t" "Simple todo" entry
                                  (file+headline "inbox.org" "Capture")
-                                 "** TODO %^{Description} %^g\n	%?\n	:LOGBOOK:\n	- Added: %U\n	:END:" :prepend t)))
+                                 "** TODO %^{Description} %^G\n	%?\n	:LOGBOOK:\n	- Added: %U\n	:END:" :prepend t)))
 
 
   ;; Smartparens
