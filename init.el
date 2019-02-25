@@ -33,12 +33,13 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '((python :variables python-test-runner 'pytest)
+   '(rust
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     (python :variables python-test-runner 'pytest)
      (gtags :variables gtags-enable-by-default t)
      finance
      ibuffer
@@ -48,19 +49,13 @@ This function should only modify configuration layer settings."
      emacs-lisp
      (go :variables
          go-use-golangci-lint t
-         go-use-test-args "-race -timeout 10s"
+         ;; go-use-test-args "-race -timeout 10s"
          godoc-at-point-function 'godoc-gogetdoc
          go-tab-width 4
          go-format-before-save t)
      latex
      ;; rust
      ;; ess
-     (erc :variables
-          erc-server-list
-          '(("irc.freenode.net"
-             :port "6697"
-             :ssl t
-             :nick "gganley")))
      syntax-checking
      spell-checking
      auto-completion
@@ -69,7 +64,6 @@ This function should only modify configuration layer settings."
      org
      version-control
      (git :variables git-magit-status-fullscreen t)
-     github
      docker
      (shell :variables
             shell-default-height 30
@@ -113,7 +107,7 @@ It should only modify the values of Spacemacs settings."
    ;; to compile Emacs 27 from source following the instructions in file
    ;; EXPERIMENTAL.org at to root of the git repository.
    ;; (default nil)
-   dotspacemacs-enable-emacs-pdumper nil
+   dotspacemacs-enable-emacs-pdumper t
 
    ;; File path pointing to emacs 27.1 executable compiled with support
    ;; for the portable dumper (this is currently the branch pdumper).
@@ -126,7 +120,7 @@ It should only modify the values of Spacemacs settings."
    ;; when invoking Emacs 27.1 executable on the command line, for instance:
    ;;   ./emacs --dump-file=~/.emacs.d/.cache/dumps/spacemacs.pdmp
    ;; (default spacemacs.pdmp)
-   dotspacemacs-emacs-dumper-dump-file "spacemacs.pdmp"
+   dotspacemacs-emacs-dumper-dump-file "~/.spacemacs.d/spacemacs.pdmp"
 
    ;; If non-nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
@@ -171,7 +165,7 @@ It should only modify the values of Spacemacs settings."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'emacs
+   dotspacemacs-editing-style 'vim
 
    ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
@@ -190,11 +184,7 @@ It should only modify the values of Spacemacs settings."
    ;; `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((agenda . 10)
-                                (recents . 5)
-                                (projects . 7)
-                                (todos . 10)
-                                (bookmarks . 5))
+   dotspacemacs-startup-lists '((todos . 10))
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
 
@@ -240,11 +230,10 @@ It should only modify the values of Spacemacs settings."
                                  ))
                               ((string-equal system-type "gnu/linux") ; GNU/Linux
                                (progn
-                                 '("Anonymice Powerline"
-                                   :size 14
+                                 '("Hack"
+                                   :size 12
                                    :weight normal
-                                   :width normal
-                                   :powerline-scale 1.6))))
+                                   :width normal))))
    ;; The leader key
    dotspacemacs-leader-key "SPC"
 
@@ -502,7 +491,7 @@ you should place your code here."
 
   ;; Spacemacs
   (spacemacs/toggle-mode-line-battery-on)
-  (spacemacs/toggle-vi-tilde-fringe-off)
+  ;; (spacemacs/toggle-vi-tilde-fringe-off)
   (spacemacs/set-leader-keys "oc" 'org-capture)
   (spacemacs/set-leader-keys "or" 'org-refile)
   (setq bookmark-default-file "~/.spacemacs.d/bookmarks.el")
