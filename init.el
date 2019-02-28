@@ -49,7 +49,6 @@ This function should only modify configuration layer settings."
      emacs-lisp
      (go :variables
          go-use-golangci-lint t
-         ;; go-use-test-args "-race -timeout 10s"
          godoc-at-point-function 'godoc-gogetdoc
          go-tab-width 4
          go-format-before-save t)
@@ -487,7 +486,9 @@ you should place your code here."
   ;; Emacs
   (setq auth-source-debug t
         auth-sources
-        '((:source "~/.authinfo.gpg")))
+        '((:source "~/.authinfo.gpg"))
+        erc-track-exclude-types '("324" "329" "332" "333" "353" "477" "MODE"
+                                  "JOIN" "PART" "QUIT" "NICK"))
 
   ;; Spacemacs
   (spacemacs/toggle-mode-line-battery-on)
