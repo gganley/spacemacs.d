@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+
+import re
+import getopt
+import sys
+import os
+import requests
+import json
+
+def get_toggl_command():
+    try:
+        arguments, values = getopt.getopt(sys.argv[1:], 'd:p:t:', ['description=', 'project=', 'tags='])
+    except getopt.error as err:
+        print(str(err))
+        sys.exit(2)
+
+    # parse arguments from list of pairs to dictionary named arg_dict
+    arg_dict = {}
+    for a, v in arguments:
+        if a in ['-p', '--project']:
+            arg_dict['project'] = v
+        if a in ['-d', '--description']:
+            arg_dict['description'] = v
+        if a in ['-t', '--tags']:
+            arg_dict['tags'] = v
+        else:
+            arg_dict['tags'] = ''
+    # shit i need to get the pid for this project name
+    workspace_get = requests.get('https://www.toggl.com/api/v8/workspaces', auth=(os.environ['TOGGL_API'], 'api_token')).json()
+    wrkspc_prj_get = requests.get('https://www.toggl.com/api/v8/workspaces/%s/projects' % workspace_get[0]['id'], auth=(os.environ['TOGGL_API'], 'api_token')).json()
+
+    payload = {
+        'time_entry': {
+            'description': arg_dict['description'],
+            'tags': arg_dict['tags'].split(','),
+            'pid': [n['id'] for n in wrkspc_prj_get if n['name'] == arg_dict['project']][0],
+            'created_with': 'toggl.py'
+        }
+    }
+
+    r = requests.post('https://www.toggl.com/api/v8/time_entries/start', data=json.dumps(payload), auth=(os.environ['TOGGL_API'], 'api_token'))
+    print(r.text)
+
+if __name__ == '__main__':
+    get_toggl_command()

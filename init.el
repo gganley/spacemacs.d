@@ -34,13 +34,12 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(rust
-     csv
-     (python :variables python-test-runner 'pytest)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     (python :variables python-test-runner 'pytest)
      (gtags :variables gtags-enable-by-default t)
      finance
      ibuffer
@@ -56,12 +55,6 @@ This function should only modify configuration layer settings."
      latex
      ;; rust
      ;; ess
-     (erc :variables
-          erc-server-list
-          '(("irc.freenode.net"
-             :port "6697"
-             :ssl t
-             :nick "gganley")))
      syntax-checking
      spell-checking
      auto-completion
@@ -70,7 +63,6 @@ This function should only modify configuration layer settings."
      org
      version-control
      (git :variables git-magit-status-fullscreen t)
-     github
      docker
      (shell :variables
             shell-default-height 30
@@ -114,7 +106,7 @@ It should only modify the values of Spacemacs settings."
    ;; to compile Emacs 27 from source following the instructions in file
    ;; EXPERIMENTAL.org at to root of the git repository.
    ;; (default nil)
-   dotspacemacs-enable-emacs-pdumper nil
+   dotspacemacs-enable-emacs-pdumper t
 
    ;; File path pointing to emacs 27.1 executable compiled with support
    ;; for the portable dumper (this is currently the branch pdumper).
@@ -237,11 +229,10 @@ It should only modify the values of Spacemacs settings."
                                  ))
                               ((string-equal system-type "gnu/linux") ; GNU/Linux
                                (progn
-                                 '("Anonymice Powerline"
-                                   :size 14
+                                 '("Hack"
+                                   :size 12
                                    :weight normal
-                                   :width normal
-                                   :powerline-scale 1.6))))
+                                   :width normal))))
    ;; The leader key
    dotspacemacs-leader-key "SPC"
 
@@ -501,7 +492,7 @@ you should place your code here."
 
   ;; Spacemacs
   (spacemacs/toggle-mode-line-battery-on)
-  (spacemacs/toggle-vi-tilde-fringe-off)
+  ;; (spacemacs/toggle-vi-tilde-fringe-off)
   (spacemacs/set-leader-keys "oc" 'org-capture)
   (spacemacs/set-leader-keys "or" 'org-refile)
   (setq bookmark-default-file "~/.spacemacs.d/bookmarks.el")
@@ -525,9 +516,12 @@ you should place your code here."
                              ("~/org/recipes.org" :maxlevel . 3)
                              ("~/org/projects.org" :maxlevel . 3))
         org-agenda-files "~/.spacemacs.d/.agenda_files"
+        ;; This is to make SCHEDULED behave like deferred date
+        org-agenda-tags-todo-honor-ignore-options t
+        org-agenda-todo-ignore-scheduled 'future
         org-capture-templates '(("t" "Simple todo" entry
                                  (file+headline "inbox.org" "Capture")
-                                 "** TODO %^{Description} %^g\n	%?\n	:LOGBOOK:\n	- Added: %U\n	:END:" :prepend t)))
+                                 "** TODO %^{Description} %^G\n	%?\n	:LOGBOOK:\n	- Added: %U\n	:END:" :prepend t)))
 
 
   ;; Smartparens
