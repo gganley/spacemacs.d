@@ -495,6 +495,10 @@ you should place your code here."
   ;; (spacemacs/toggle-vi-tilde-fringe-off)
   (spacemacs/set-leader-keys "oc" 'org-capture)
   (spacemacs/set-leader-keys "or" 'org-refile)
+  (spacemacs/set-leader-keys "ot" (lambda () (let ((description (read-string "Description: "))
+                                                   (project (read-string "Project: "))
+                                                   (tags (read-string "Tags: ")))
+                                               (start-process "" nil "toggl" "-d" description "-p" project "-t" tags))))
   (setq bookmark-default-file "~/.spacemacs.d/bookmarks.el")
 
   ;; Mac
