@@ -78,7 +78,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(arduino-mode)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -513,11 +513,12 @@ you should place your code here."
                              ("~/org/sometime_maybe.org" :maxlevel . 3)
                              ("~/org/keybindings.org" :maxlevel . 3)
                              ("~/org/recipes.org" :maxlevel . 3)
-                             ("~/org/projects.org" :maxlevel . 3))
+                             ("~/org/projects.org" :maxlevel . 2))
         org-agenda-files "~/.spacemacs.d/.agenda_files"
         ;; This is to make SCHEDULED behave like deferred date
         org-agenda-tags-todo-honor-ignore-options t
         org-agenda-todo-ignore-scheduled 'future
+        org-refile-use-outline-path 'file
         org-capture-templates '(("t" "Simple todo" entry
                                  (file+headline "inbox.org" "Capture")
                                  "** TODO %^{Description} %^G\n	%?\n	:LOGBOOK:\n	- Added: %U\n	:END:" :prepend t)))
