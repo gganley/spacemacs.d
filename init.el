@@ -493,12 +493,15 @@ you should place your code here."
   ;; Spacemacs
   (spacemacs/toggle-mode-line-battery-on)
   ;; (spacemacs/toggle-vi-tilde-fringe-off)
+  (defun toggl ()
+    (interactive)
+    (let ((description (read-string "Description: "))
+          (project (read-string "Project: "))
+          (tags (read-string "Tags: ")))
+      (start-process "" nil "toggl" "-d" description "-p" project "-t" tags)))
   (spacemacs/set-leader-keys "oc" 'org-capture)
   (spacemacs/set-leader-keys "or" 'org-refile)
-  (spacemacs/set-leader-keys "ot" (lambda () (let ((description (read-string "Description: "))
-                                                   (project (read-string "Project: "))
-                                                   (tags (read-string "Tags: ")))
-                                               (start-process "" nil "toggl" "-d" description "-p" project "-t" tags))))
+  (spacemacs/set-leader-keys "ot" 'toggl)
   (setq bookmark-default-file "~/.spacemacs.d/bookmarks.el")
 
   ;; Mac
