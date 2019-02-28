@@ -33,7 +33,9 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '((python :variables python-test-runner 'pytest)
+   '(rust
+     csv
+     (python :variables python-test-runner 'pytest)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -48,7 +50,6 @@ This function should only modify configuration layer settings."
      emacs-lisp
      (go :variables
          go-use-golangci-lint t
-         go-use-test-args "-race -timeout 10s"
          godoc-at-point-function 'godoc-gogetdoc
          go-tab-width 4
          go-format-before-save t)
@@ -84,7 +85,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(arduino-mode)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -126,7 +127,7 @@ It should only modify the values of Spacemacs settings."
    ;; when invoking Emacs 27.1 executable on the command line, for instance:
    ;;   ./emacs --dump-file=~/.emacs.d/.cache/dumps/spacemacs.pdmp
    ;; (default spacemacs.pdmp)
-   dotspacemacs-emacs-dumper-dump-file "spacemacs.pdmp"
+   dotspacemacs-emacs-dumper-dump-file "~/.spacemacs.d/spacemacs.pdmp"
 
    ;; If non-nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
@@ -171,7 +172,7 @@ It should only modify the values of Spacemacs settings."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'emacs
+   dotspacemacs-editing-style 'vim
 
    ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
@@ -190,11 +191,7 @@ It should only modify the values of Spacemacs settings."
    ;; `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((agenda . 10)
-                                (recents . 5)
-                                (projects . 7)
-                                (todos . 10)
-                                (bookmarks . 5))
+   dotspacemacs-startup-lists '((todos . 10))
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
 
@@ -498,7 +495,9 @@ you should place your code here."
   ;; Emacs
   (setq auth-source-debug t
         auth-sources
-        '((:source "~/.authinfo.gpg")))
+        '((:source "~/.authinfo.gpg"))
+        erc-track-exclude-types '("324" "329" "332" "333" "353" "477" "MODE"
+                                  "JOIN" "PART" "QUIT" "NICK"))
 
   ;; Spacemacs
   (spacemacs/toggle-mode-line-battery-on)
